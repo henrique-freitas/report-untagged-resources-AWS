@@ -27,12 +27,10 @@ def lambda_handler(event, context):
                 if element not in applied_tags:
                     new_list.append(element)
             print("Tags list missed on Bucket:%s is %s" %(bucket_name, new_list))
-            #f.write("Tags list missed on Bucket:%s is %s" %(bucket_name, new_list))
-            #f.write("\n")
+            
         except Exception as e:
             print("Tags list missed on Bucket:%s is %s" %(bucket_name, needed_tags_on_s3))
-            #f.write("Tags list missed on Bucket:%s is %s" %(bucket_name, needed_tags_on_s3))
-            #f.write("\n")
+           
     for region in aws_regions_ec2:
         ec2 = boto3.client('ec2', region_name='sa-east-1')        
         response = ec2.describe_instances()
@@ -54,14 +52,11 @@ def lambda_handler(event, context):
                         if element not in applied_tags:
                             new_list.append(element)
                     print("AWS region is %s and Tags list missed on Instance ID :%s is %s" %(region, instance["InstanceId"], new_list))
-                    #f.write("AWS region is %s and Tags list missed on Instance ID :%s is %s" %(region, instance["InstanceId"], new_list))
-                    #f.write("\n")
+                    
                 except Exception as e:
                     print ("AWS region is %s and Tags list missed on Instance ID :%s is %s" %(region, instance["InstanceId"], needed_tags_on_ec2))
     
-                    #f.write("AWS region is %s and Tags list missed on Instance ID :%s is %s" %(region, instance["InstanceId"], needed_tags_on_ec2))
-    
-                    #f.write("\n")
+                    
  
     for region in aws_regions_rds:
         rds = boto3.client('rds', region_name='sa-east-1')
@@ -80,7 +75,6 @@ def lambda_handler(event, context):
                 if element not in applied_tags:
                     new_list.append(element)
             print("AWS region is %s Tags list missed on RDS Instance ARN :%s is %s" %(region, arn, new_list))
-            #f.write("AWS region is %s Tags list missed on RDS Instance ARN :%s is %s" %(region, arn, new_list))
-            #f.write("\n")
+           
 
 
